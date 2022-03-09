@@ -31,6 +31,15 @@ namespace custom
 template<class T>
 class priority_queue
 {
+
+int pop;
+int push;
+T * data; 
+int capacity;
+int contents;
+
+
+
 public:
 
    //
@@ -38,6 +47,11 @@ public:
    //
    priority_queue() 
    {
+      pop = 0;
+      push = 0; 
+      data = null; 
+      capacity = 0;
+      contents = 0;
    }
    priority_queue(const priority_queue &  rhs)  
    { 
@@ -60,18 +74,49 @@ public:
    //
    // Access
    //
-   const T & top() const;
+   const T & top() const
+   {
+      return pop;
+
+   }
 
    //
    // Insert
    //
-   void  push(const T& t);
+   void  push(const T& t)
+   {
+         if capacity == 0
+         {
+            capacity += 1;
+            push += 1;
+            contents += 1;
+            data = new T[0]; 
+         }
+         else 
+         {
+            capacity += 1;
+            push +=1;
+            contents += 1;
+            data = T[push];
+         
+         }
+         data[capacity+1] = t; 
+   };
+
+
    void  push(T&& t);     
 
    //
    // Remove
    //
-   void  pop(); 
+   void  pop()
+   {
+      data[pop] = NULL;
+      capacity -= 1;
+      pop += 1;
+      contents -= 1;
+      
+   }
 
    //
    // Status
@@ -96,6 +141,10 @@ private:
    custom::vector<T> container; 
 
 };
+
+
+
+
 
 /************************************************
  * P QUEUE :: TOP
